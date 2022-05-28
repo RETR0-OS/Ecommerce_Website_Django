@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="col-sm-10 offset-sm-1 text-center justify-content-center">
+    <h1 class="container mt-3 mb-2">The Order Details For Your Order</h1>
+      <small class="container mb-5">Order Reference Code: {{order.ref_code}}</small><br>
+    <small class="container mb-5">Ordered on: {{order.ordered_date}}</small>
+    <table class="table table-striped table-info mt-5 table-hover table-bordered border-warning">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order_item in order.items.all %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{order_item.item.itemName}}</td>
+            <td>{{order_item.quantity}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tr>
+        <td colspan="1">Order Total:</td>
+        <td colspan="2"><span>${{order.get_total}}</span></td>
+      </tr>
+      <tr>
+        <td colspan="3"><a class="btn btn-danger me-4 float-end"type="button" name="request_refund" target="_blank" href="{% url 'ecommerce:request_refund' %}">Request Refund</a></td>
+      </tr>
+    </table>
+  </div>
+{% endblock %}

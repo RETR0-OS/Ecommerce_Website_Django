@@ -1,0 +1,74 @@
+{% extends "staff/base_staff.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <section class="Pending_Orders", id="Pending_Orders">
+    <div class="col-sm-10 offset-sm-1 mt-4 mb-4 text-center justify-content-center">
+      <h1>Pending Orders</h1>
+    </div>
+    <div class="col-sm-12 ms-5 mt-3 mb-4">
+      <form class="" action="{% url 'staff:search_pending_orders' %}" method="GET">
+        <input type="text" name="query" placeholder="search by first name or last name in pending orders...." class="col-sm-11"><button type="submit" class="btn btn-primary ms-1 " name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-8 ms-5 orders_table">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Street Address</th>
+                <th scope="col">Apartment Address</th>
+                <th scope="col">Country</th>
+                <th scope="col">Zip Code</th>
+                <th scope="col">Ordered Date</th>
+                <th scope="col">Dispatch Status</th>
+                <th scope="col">Delivered</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pending_order in pending_orders_list %}
+                <tr>
+                  <th scope="row">{{forloop.counter}}</th>
+                  <td>{{pending_order.user.first_name}} {{pending_order.user.last_name}}</td>
+                  <td>{{pending_order.billing_address.street_address}}</td>
+                  {% if pending_order.billing_address.apartment_address %}
+                    <td>{{pending_order.billing_address.apartment_address}}</td>
+                  {% else %}
+                    <td>-</td>
+                  {% endif %}
+                  <td>{{pending_order.billing_address.country.name}}</td>
+                  <td>{{pending_order.billing_address.zip}}</td>
+                  <td>{{pending_order.ordered_date}}</td>
+                  {% if pending_order.dispatched %}
+                    <td class='text-center'><i class="fa-solid fa-check" style="color:green !important"></i></td>
+                  {% else %}
+                    <td class='text-center'><i class="fa-solid fa-xmark" style="color:red !important"></i></td>
+                  {% endif %}
+                  {% if pending_order.delivered %}
+                    <td class='text-center'><i class="fa-solid fa-check" style="color:green !important"></i></td>
+                  {% else %}
+                    <td class='text-center'><i class="fa-solid fa-xmark" style="color:red !important"></i></td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-2 offset-sm-1">
+          <form class="" action="{% url 'staff:pending_orders' %}" method="POST">
+            {% csrf_token %}
+            <h3>Filter Orders</h3>
+            <br>
+            {{filter_form| crispy}}
+            <br>
+            <input type="submit" class="btn btn-primary" name="" value="Filter">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

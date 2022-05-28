@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/items_list.css' %}">
+  <div class="col-sm-10 offset-sm-1 text-center">
+    <h1>Your Past Orders....</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      {% for order in orders %}
+        <div class="col mt-3 mb-3">
+          <div class="card shadow p-3 bg-body rounded" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Order Reference ID: {{order.ref_code}}</h5>
+              <p class="card-text">Date Of Order: {{order.ordered_date}}</p>
+              <p class="card-text">Amount Paid: {{order.Paid_price}}</p>
+              <a href='{% url "ecommerce:my_order_details" order.pk %}' class="btn btn-primary"><span>View Order Details</span></a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

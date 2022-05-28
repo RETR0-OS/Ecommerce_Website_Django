@@ -1,0 +1,28 @@
+{% extends "../base_staff.html" %}
+{% load static %}
+{% block content %}
+  <div class="col-sm-10 offset-sm-1 text-center justify-content-center">
+    <h1 class="container mt-3 mb-2">The Order Details For Requested Order</h1>
+    <small class="container mb-5">Ordered on: {{order.ordered_date}}</small>
+    <table class="table table-striped table-info mt-5 table-hover table-bordered border-warning">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Customer</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order_item in order.items.all %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <th scope="row">{{order_item.user.first_name}} {{order_item.user.last_name}}</th>
+            <td>{{order_item.item.itemName}}</td>
+            <td>{{order_item.quantity}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

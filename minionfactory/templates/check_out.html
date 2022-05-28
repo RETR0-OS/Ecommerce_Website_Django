@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4 offset-1">
+        <h1>Check Out</h1>
+        <form class="" method="POST">
+          {% csrf_token %}
+          {{form| crispy}}
+          <br>
+          <input type="submit" class="btn btn-success" value="Checkout!">
+        </form>
+      </div>
+      <br><br>
+      <div class="col-sm-6">
+          <h1>Order Summary</h1>
+          <table class="table table-warning table-md table-striped table-bordered border-primary caption-top table-responsive-sm table-hover">
+            <caption>List of the items you are ordering</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {% for order_item in object.items.all %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{order_item.item.itemName}}</td>
+                {% if order_item.item.itemDiscountPrice %}
+                  <td>${{order_item.item.itemDiscountPrice}} (Discounted)</td>
+                {% else %}
+                  <td>${{order_item.item.itemPrice}}</td>
+                {% endif %}
+                <td><a href="{% url 'ecommerce:reduce_item' order_item.item.slug %}"><i class="fa-solid fa-minus me-2"></i></a>
+                    {{order_item.quantity}} <a href="{% url 'ecommerce:add_to_cart' order_item.item.slug %}"><i class="fa-solid fa-plus ms-2"></i></a>
+                   <a href="{% url 'ecommerce:delete_an_item_from_cart' order_item.item.slug %}"><i class="fa-solid fa-trash float-end text-danger"></i></a></td>
+                {% if order_item.item.itemDiscountPrice %}
+                  <td>${{order_item.get_total_dicount_item_price}} &nbsp;<span class="badge bg-primary">(Saving ${{order_item.get_savings_item}})</span></td>
+                {% else %}
+                  <td>${{ order_item.get_total_price_item }}</td>
+                {% endif %}
+              </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5">Your cart is empty!</td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    <a class="btn btn-primary float-end" href="{% url 'ecommerce:items_list' %}">Continue Shoppng!</a>
+                  </td>
+                </tr>
+              {% endfor %}
+              {% if object.coupon.coupon_code %}
+                <tr>
+                  <td colspan="1">coupon:</td>
+                  <td colspan="3">{{ object.coupon.coupon_code }}</td>
+                  <td>{{ object.coupon.coupon_discount_percentage }}% off!</td>
+                </tr>
+              {% endif %}
+              {% if object.get_total %}
+                <tr>
+                  <td colspan="4">Order Total:</td>
+                  <td>${{object.get_total}}</td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    <a class="btn btn-primary float-end" href="{% url 'ecommerce:items_list' %}">Continue Shoppng!</a>
+                  </td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+          <br>
+          {% if not object.coupon.coupon_code %}
+            <h4>Add A Coupon</h4>
+            <form class="" action="{% url 'ecommerce:add_coupon' %}" method="POST">
+              {% csrf_token %}
+              {{coupon_form| crispy}}
+              <br>
+              <input type="submit" class="btn btn-primary" value="Redeem Coupon!">
+            </form>
+          {% else %}
+            <h3>coupon ({{object.coupon.coupon_code}}) applied! </h3>
+          {% endif %}
+        </div>
+        <br><br>
+        </div>
+    </div>
+  <br><br><br>
+{% endblock %}

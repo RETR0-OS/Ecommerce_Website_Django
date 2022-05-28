@@ -1,0 +1,70 @@
+{% extends "staff/base_staff.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <section class="Pending_Refunds" id="Pending_Refunds">
+    <div class="col-sm-12 mt-4 mb-4 text-center justify-content-center">
+      <h1>Pending Refunds</h1>
+    </div>
+    <div class="col-sm-12 ms-5 mt-3 mb-4">
+      <form class="" action="{% url 'staff:search_pending_refunds' %}" method="GET">
+        <input type="text" name="query" placeholder="search by first name or last name in pending orders...." class="col-sm-11"><button type="submit" class="btn btn-primary ms-1 " name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-8 ms-5 orders_table">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Street Address</th>
+                <th scope="col">Apartment Address</th>
+                <th scope="col">Country</th>
+                <th scope="col">Zip Code</th>
+                <th scope="col">Requested Date</th>
+                <th scope="col">Amount To Refund</th>
+                <th scope="col">Worker Dispatch Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pending_refund in pending_refunds_list %}
+                <tr>
+                  <th scope="row">{{forloop.counter}}</th>
+                  <td>{{pending_refund.order.user.first_name}} {{pending_refund.order.user.last_name}}</td>
+                  <td>{{pending_refund.order.billing_address.street_address}}</td>
+                  {% if pending_refund.order.billing_address.apartment_address %}
+                    <td>{{pending_refund.order.billing_address.apartment_address}}</td>
+                  {% else %}
+                    <td>-</td>
+                  {% endif %}
+                  <td>{{pending_refund.order.billing_address.country.name}}</td>
+                  <td>{{pending_refund.order.billing_address.zip}}</td>
+                  <td>{{pending_refund.requested_date}}</td>
+                  <td>${{pending_refund.order.Paid_price}}</td>
+                  {% if pending_refund.order.RefundWorkerDispatched %}
+                    <td class='text-center'><i class="fa-solid fa-check" style="color:green !important"></i></td>
+                  {% else %}
+                    <td class='text-center'><i class="fa-solid fa-xmark" style="color:red !important"></i></td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-2 offset-sm-1">
+          <form class="" action="{% url 'staff:pending_refunds' %}" method="POST">
+            {% csrf_token %}
+            <h3>Filter Orders</h3>
+            <br>
+            {{filter_form| crispy}}
+            <br>
+            <input type="submit" class="btn btn-primary" name="" value="Filter">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
