@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <section class="Login" id="Login">
+    {% if not user.is_authenticated %}
+      <br><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="col-6 offset-3 shadow-lg p-3 bg-body rounded justify-content-center text-center">
+      <h1>Login</h1>
+      <br><br>
+      <form method="POST">
+        {% csrf_token %}
+        {{form| crispy}}
+        <br>
+        <button type="submit" class="btn btn-primary">Login!</button>
+      </form>
+      <br>
+      <h3>Don't have an account?<a href="{% url 'members:register' %}"> Create One!</a></h3>
+      </div>
+      <br>
+      <br>
+      <br>
+    {% else %}
+    <p>You are already logged in! Please <a href="{% url 'logout' %}">logout</a> to login as different user!</p>
+    {% endif %}
+  </section>
+  <br><br><br><br><br><br><br><br><br>
+{% endblock %}

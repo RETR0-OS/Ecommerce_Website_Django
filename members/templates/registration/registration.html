@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <section class="Register" id="Register">
+    {% if not user.is_authenticated %}
+    <div class="col-sm-10 offset-sm-1">
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1 class="text-center">Register With Us</h1>
+      <br><br>
+      <div class="new_blog_form form-group">
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" name="" value="Register">
+        </form>
+      </div>
+      <br>
+      <br>
+      <h3>Already have an account?<a href="{% url 'login' %}"> Login!</a></h3>
+      <br>
+      <br>
+    </div>
+    {% else %}
+      <p>Please <a href="{% url 'logout' %}">logout</a> to register new user!</p>
+    {% endif %}
+  </section>
+{% endblock %}
