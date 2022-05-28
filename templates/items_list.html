@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_imports %}
+    <link rel="stylesheet" href="{% static 'css/items_list.css' %}">
+{% endblock %}
+{% block content %}
+  <section class="Shop" id="Shop">
+    <div class="col-sm-12 text-center mb-200">
+        <h2>Banana-fy Your Garage, Wardrobe And More!</h2>
+    </div>
+    <hr>
+    <div class="col-sm-12 ms-5 mt-3 mb-4">
+      <form class="" action="{% url 'ecommerce:search_for_product' %}" method="GET">
+        <input type="text" name="query" placeholder="Look for your dream product by name, category, description or price....." class="col-sm-11"><button type="submit" class="btn btn-primary ms-1 " name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% for item in object_list %}
+          <div class="col mt-3 mb-3">
+            <div class="card shadow p-3 bg-body rounded" style="width: 18rem;">
+              <img src="{{item.itemPic.url}}" class="card-img-top" style="height:120px !important"alt="Product Picture">
+              <div class="card-body">
+                <h5 class="card-title">{{item.itemName}} <br><span class="badge text-bg-{{item.get_label_display}}">{{item.get_category_display}}</span></h5>
+                {% if item.itemDiscountPrice %}
+                <h6 class="card-title"><s>${{item.itemPrice}}</s> ${{item.itemDiscountPrice}}</h6>
+                {% else %}
+                <h5 class="card-title">${{item.itemPrice}}</h5>
+                {% endif %}
+                <p class="card-text">{{item.itemDescription| slice:":50"}}....</p>
+                <a href='{{item.get_absolute_url}}' class="btn btn-primary"><span>View Product</span></a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!--Pagination-->
+    {% if is_paginated %}
+    <div class="col-sm-12 d-flex justify-content-center text-center mt-5">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            {% endif %}
+            <li class="page-item"><p class="page-link">{{page_obj.number}}</p></li>
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+    </div>
+    {% endif %}
+    <br><br><br>
+  </section>
+{% endblock %}
