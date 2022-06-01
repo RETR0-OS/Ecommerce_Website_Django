@@ -34,8 +34,8 @@ This is the github repository for a site made by R3tr0. This repository has cont
 - Install requirements for project by running: `pip install -r requirements.txt`
 
 - `python3 manage.py runserver`
-
-- `Then browse to the url: localhost:8000`
-
+- `python3 manage.py makemigrations`
+- `python3 manage.py migrate`
+- Then browse to the url: `localhost:8000`
 - The site would be visible.
 
