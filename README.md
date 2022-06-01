@@ -21,7 +21,7 @@ This is the github repository for a site made by R3tr0. This repository has cont
 <h3>Steps</h3>
 <ul>
   <li> Open a git bash terminal. </li>
-  <li>Install python virtual environment by running: ```pip install virtualenv```. 
+  <li>Install python virtual environment by running:`pip install virtualenv```. 
   <li>Create python virtual environment by running: ```python3 -m venv name_virtual_env```</li>
   <li>Activate Virtul Env:<li/>
   <ul>
