@@ -12,27 +12,27 @@ This is the github repository for a site made by R3tr0. This repository has cont
 <h1>Project Setup</h1>
 <h3>Prerequisits</h3>
 <ul>
-  <li>Python 3.9</li>
-  <li>git bash terminal</li>
-  <li>dependencies in requirements.txt file</li>
-  <li>Redis Server (optional) </li>
+  <li>Python 3.9 and added to path.</li>
+  <li>git bash terminal.</li>
+  <li> git installed on your terminal and added to path.<li>
+  <li>Redis Server (optional). </li>
 </ul>
   
 <h3>Steps</h3>
 <ul>
   <li> Open a git bash terminal. </li>
-  <li>Install python virtual environment by running: pip install virtualenv: 
-  <li>Create python virtual environment by running: python3 -m venv name_virtual_env</li>
+  <li>Install python virtual environment by running: ```pip install virtualenv```. 
+  <li>Create python virtual environment by running: ```python3 -m venv name_virtual_env```</li>
   <li>Activate Virtul Env:<li/>
   <ul>
-    <li>On linux: source name_virtual_env/bin/activate</li>
-    <li>On windows: name_virtual_env\Scripts\activate </li>
+    <li>On linux: ```source name_virtual_env/bin/activate```</li>
+    <li>On windows: ```name_virtual_env\Scripts\activate``` </li>
   </ul>
-  <li>Clone repository form: https://github.com/RETR0-OS/Banana.git </li>
+  <li>Clone repository with: ```git clone https://github.com/RETR0-OS/Banana.git``` </li>
   <li>cd Banana </li>
-  <li> Install requirements for project by running: pip install -r requirements.txt </li>
-  <li>cd minion factory </li>
-  <li>python3 manage.py runserver </li>
-  <li>Then go to the url: localhost:8000</li>
+  <li> Install requirements for project by running: ```pip install -r requirements.txt``` </li>
+  <li> ```cd Banana``` </li>
+  <li>```python3 manage.py runserver``` </li>
+  <li>Then browse to the url: localhost:8000</li>
   <li>The site would be visible.</li>
 </ul> 
