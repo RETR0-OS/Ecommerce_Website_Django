@@ -11,10 +11,10 @@ This is the github repository for a site made by R3tr0. This repository has cont
 
 # Project Setup
 ### Prerequisites
-  - Python 3.9 and added to path.</li>
-  - git bash terminal.</li>
-  - git installed on your terminal and added to path.<li>
-  - Redis Server (optional). </li>
+  - Python 3.9 and added to path.
+  - git bash terminal.
+  - git installed on your terminal and added to path.
+  - Redis Server (optional).
   
 ### Steps
 - Open a git bash terminal.
