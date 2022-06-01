@@ -9,14 +9,14 @@ This is the github repository for a site made by R3tr0. This repository has cont
 
 - However, this project has also been hosted on https://r3tr0m1ll3r.pythonanywhere.com/ where all styling with custom error pages and production level settings is visible.
 
-#Project Setup
-###Prerequisits
+# Project Setup
+### Prerequisits
   - Python 3.9 and added to path.</li>
   - git bash terminal.</li>
   - git installed on your terminal and added to path.<li>
   - Redis Server (optional). </li>
   
-###Steps
+### Steps
 - Open a git bash terminal.
 
 - Install python virtual environment by running: `pip install virtualenv`. 
