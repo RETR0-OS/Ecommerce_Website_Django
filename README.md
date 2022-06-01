@@ -13,8 +13,7 @@ This is the github repository for a site made by R3tr0. This repository has cont
   
 <h3>Steps</h3>
 <ul>
-  <li>pip install virtualenv</li>
-  <li>python3 -m venv name_virtual_env</li>
+  <li>pip install virtualenv: python3 -m venv name_virtual_env</li>
   <li>Activate Virtul Env:<li/>
   <ul>
     <li>On linux: source name_virtual_env/bin/activate</li>
