@@ -21,8 +21,8 @@ This is the github repository for a site made by R3tr0. This repository has cont
 - Install python virtual environment by running: `pip install virtualenv`. 
 - Create python virtual environment by running: `python3 -m venv name_virtual_env`
 - Activate Virtul Env:
--- On linux: `source name_virtual_env/bin/activate`
--- On windows: `name_virtual_env\Scripts\activate`
+[] On linux: `source name_virtual_env/bin/activate`
+[] On windows: `name_virtual_env\Scripts\activate`
 -Clone repository with: `git clone https://github.com/RETR0-OS/Banana.git`
 -`cd Banana`
 - Install requirements for project by running: `pip install -r requirements.txt`
