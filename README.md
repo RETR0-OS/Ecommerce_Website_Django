@@ -24,7 +24,8 @@ This is the github repository for a site made by R3tr0. This repository has cont
   - On linux: `source name_virtual_env/bin/activate`
   - On windows: `name_virtual_env\Scripts\activate`
 -Clone repository with: `git clone https://github.com/RETR0-OS/Banana.git`
--`cd Banana`
+
+- `cd Banana`
 - Install requirements for project by running: `pip install -r requirements.txt`
 - `python3 manage.py runserver`
 - `Then browse to the url: localhost:8000`
