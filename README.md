@@ -22,17 +22,17 @@ This is the github repository for a site made by R3tr0. This repository has cont
 <ul>
   <li> Open a git bash terminal. </li>
   <li>Install python virtual environment by running: `pip install virtualenv`. 
-  <li>Create python virtual environment by running: ```python3 -m venv name_virtual_env```</li>
+  <li>Create python virtual environment by running: python3 -m venv name_virtual_env</li>
   <li>Activate Virtul Env:<li/>
   <ul>
-    <li>On linux: ```source name_virtual_env/bin/activate```</li>
-    <li>On windows: ```name_virtual_env\Scripts\activate``` </li>
+    <li>On linux: source name_virtual_env/bin/activate </li>
+    <li>On windows: name_virtual_env\Scripts\activate </li>
   </ul>
-  <li>Clone repository with: ```git clone https://github.com/RETR0-OS/Banana.git``` </li>
+  <li>Clone repository with: ]git clone https://github.com/RETR0-OS/Banana.git </li>
   <li>cd Banana </li>
-  <li> Install requirements for project by running: ```pip install -r requirements.txt``` </li>
-  <li> ```cd Banana``` </li>
-  <li>```python3 manage.py runserver``` </li>
+  <li> Install requirements for project by running: pip install -r requirements.txt </li>
+  <li> cd Banana </li>
+  <li> python3 manage.py runserver </li>
   <li>Then browse to the url: localhost:8000</li>
   <li>The site would be visible.</li>
 </ul> 
