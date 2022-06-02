@@ -41,12 +41,19 @@
               <a class="nav-link active Pending_Preprocessing" aria-current="page" href="{% url 'staff:pending_preprocessing' %}">Pending Preprocessings</a>
             </li>
           {%endif%}
-          <li class="nav-item ms-4 me-4">
-            <p class="nav-link">current user: {{user.username}}</p>
-          </li>
-          <li class="nav-item ms-4 me-4">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item ms-4 me-4">
+              <p class="nav-link">current user: {{user.username}}</p>
+            </li>
+            <li class="nav-item ms-4 me-4">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item ms-4 me-4">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+          {% endif %}
+
         </ul>
       </div>
     </div>
