@@ -46,13 +46,19 @@
                 My Profile
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'ecommerce:my_orders' %}">Past Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'ecommerce:my_current_orders' %}">Current Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'ecommerce:my_past_orders' %}">Past Orders</a></li>
                 <li><a class="dropdown-item" href="{% url 'members:edit_account' %}">Edit Account Details</a></li>
                 <li><a class="dropdown-item" href="{% url 'members:change_password' %}">Change Password</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><p class="dropdown-item" href="#">Username: {{user.username}}</p></li>
               </ul>
             </li>
+            {% if user.is_staff %}
+              <li class="nav-item ms-4 me-4">
+                <a class="nav-link" href="{% url 'staff:staff_home' %}">Staff Portal</a>
+              </li>
+            {% endif %}
             <li class="nav-item ms-4 me-4">
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
