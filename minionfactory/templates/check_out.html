@@ -7,6 +7,7 @@
     <div class="row">
       <div class="col-sm-4 offset-1">
         <h1>Check Out</h1>
+        <h3>Deliver order to: {{request.user.username}}</h3>
         <form class="" method="POST">
           {% csrf_token %}
           {{form| crispy}}
