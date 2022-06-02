@@ -45,7 +45,7 @@ To set up this feature, follow the following steps:
   - ```
     INSTALLED_APPS = [
     #    'defender',
-  ```
+    ```
   - ``` 
     #'defender.middleware.FailedLoginMiddleware', 
     ```
