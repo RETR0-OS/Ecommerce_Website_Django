@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import items_detail, items_list, add_item_to_cart, remove_item_from_cart, OrderSummary, remove_one_item_from_cart, delete_item_from_cart, checkout_view,PaymentView, add_coupon_code, request_refund, search_product, ListOrdersByUser, ListOrderDetailsByUser
+from .views import items_detail, items_list, add_item_to_cart, remove_item_from_cart, OrderSummary, remove_one_item_from_cart, delete_item_from_cart, checkout_view,PaymentView, add_coupon_code, request_refund, search_product, ListOrdersByUser, ListOrderDetailsByUser, ListCurrentOrderDetailsByUser, ListCurrentOrdersByUser, cancel_Order
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -19,6 +19,9 @@ urlpatterns = [
     path('add_coupon', add_coupon_code, name="add_coupon"),
     path('request_refund', request_refund.as_view(), name="request_refund"),
     path('search_for_product', search_product.as_view(), name="search_for_product"),
-    path('my_orders', ListOrdersByUser.as_view(), name="my_orders"),
-    path('my_orders/view_order_details/<int:pk>', ListOrderDetailsByUser, name="my_order_details"),
+    path('my_past_orders', ListOrdersByUser.as_view(), name="my_past_orders"),
+    path('my_past_orders/view_order_details/<int:pk>', ListOrderDetailsByUser, name="my_past_order_details"),
+    path('my_current_orders', ListCurrentOrdersByUser.as_view(), name="my_current_orders"),
+    path('my_current_orders/view_order_details/<int:pk>', ListCurrentOrderDetailsByUser, name="my_current_order_details"),
+    path('my_current_orders/view_order_details/<int:pk>/cancel', cancel_Order, name="my_current_order_cancel"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
