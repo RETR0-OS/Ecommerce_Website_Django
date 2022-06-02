@@ -15,24 +15,16 @@ import environ
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-#env = environ.Env(
-#    DEBUG=(bool, False)
-#)
-
-environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-rv1fb)bb+g)-79m#a$*bfpfr$tye)wid02m#(kk%v!15obtyej'
 SECRET_KEY = 'Ent3r_@_50_ch@r_l0ng_Secret_key_that_1s_Secure'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #DEBUG = False
-ALLOWED_HOSTS = ['r3tr0m1ll3r.pythonanywhere.com', '*']
-SESSION_COOKIE_SECURE = 'django.contrib.sessions.backends.db'
-CSRF_COOKIE_SECURE = True
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -65,6 +57,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'minionfactory.urls'
+
+## Defender Settings ####
+#DEFENDER_LOGIN_FAILURE_LIMIT_IP = 10
+#DEFENDER_DISABLE_USERNAME_LOCKOUT = True
+#DEFENDER_LOCKOUT_TEMPLATE = "security/defender_lockout.html"
+#DEFENDER_ACCESS_ATTEMPT_EXPIRATION = 12
 
 TEMPLATES = [
     {
