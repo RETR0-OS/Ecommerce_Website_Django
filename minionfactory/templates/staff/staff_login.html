@@ -5,10 +5,11 @@
 <div class="col-md-10 offset-md-1 bg-light">
 	<h1 class="text-center">Login To Your Staff Account...</h1>
 	<form class="" method="POST">
-	  {% csrf_token %}
-	  {{login_form}}
-	  <input type="submit" name="" value="Login!" class="btn btn-primary">
+		<div class="col-md-10 offset-md-1">
+			{% csrf_token %}
+		  {{login_form}}
+		  <input type="submit" name="" value="Login!" class="btn btn-primary">
+		</div>
 	</form>
 </div>
 {% endblock %}
-
