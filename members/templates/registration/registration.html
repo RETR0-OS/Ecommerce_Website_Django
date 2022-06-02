@@ -25,7 +25,9 @@
       <br>
     </div>
     {% else %}
-      <p>You are currently logged in as: {{request.user.username}}. Please <a href="{% url 'logout' %}">logout</a> to register new user!</p>
+      <div class="col-md-10 offset-md-1 text-center">
+        <p>You are currently logged in as: {{request.user.username}}. Please <a href="{% url 'logout' %}">logout</a> to register new user!</p>
+      </div>
     {% endif %}
   </section>
 {% endblock %}
