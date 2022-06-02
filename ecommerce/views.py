@@ -277,7 +277,7 @@ class search_product(generic.View):
 class ListOrdersByUser(LoginRequiredMixin, generic.View):
     def get(self, *args, **kwargs):
         try:
-            orders = Order.objects.filter(user=self.request.user, ordered=True)
+            orders = Order.objects.filter(user=self.request.user, ordered=True, delivered=True)
             print(orders.count())
             context = {
                 "orders": orders,
@@ -285,7 +285,7 @@ class ListOrdersByUser(LoginRequiredMixin, generic.View):
             if orders.count() < 1:
                 messages.info(self.request, "You have not ordered anything yet. Visit the shop to order now!")
                 return redirect("home")
-            return render(self.request, "user_orders_page.html", context)
+            return render(self.request, "past_orders_page.html", context)
 
         except ObjectDoesNotExist:
             messages.info(self.request, "You have not ordered anything yet. Visit the shop to order now!")
@@ -295,11 +295,61 @@ class ListOrdersByUser(LoginRequiredMixin, generic.View):
 def ListOrderDetailsByUser(request, pk):
     if request.method == "GET":
         try:
-            order = Order.objects.get(pk=pk, ordered=True, user=request.user)
+            order = Order.objects.get(pk=pk, ordered=True, user=request.user, delivered=True)
             context = {
                 "order": order,
             }
             return render(request, "past_order_details.html", context)
         except ObjectDoesNotExist:
             messages.info(request, "No such order has been made by you!")
-            return redirect("ecommerce:my_orders")
+            return redirect("ecommerce:my_past_orders")
+
+class ListCurrentOrdersByUser(LoginRequiredMixin, generic.View):
+    def get(self, *args, **kwargs):
+        try:
+            orders = Order.objects.filter(user=self.request.user, ordered=True, delivered=False)
+            print(orders.count())
+            context = {
+                "orders": orders,
+            }
+            if orders.count() < 1:
+                messages.info(self.request, "You have no currently active orders. Visit the shop to order now!")
+                return redirect("home")
+            return render(self.request, "current_orders_page.html", context)
+
+        except ObjectDoesNotExist:
+            messages.info(self.request, "You have no currently active orders. Visit the shop to order now!")
+            return redirect("home")
+
+@login_required
+def ListCurrentOrderDetailsByUser(request, pk):
+    if request.method == "GET":
+        try:
+            order = Order.objects.get(pk=pk, ordered=True, user=request.user, delivered=False)
+            context = {
+                "order": order,
+            }
+            return render(request, "current_order_details.html", context)
+        except ObjectDoesNotExist:
+            messages.info(request, "No such undelivered order has been made by you!")
+            return redirect("ecommerce:my_current_orders")
+
+@login_required
+def cancel_Order(request, pk):
+    if request.method == "GET":
+        try:
+            order = Order.objects.get(pk=pk, ordered=True, user=request.user, delivered=False)
+            order.delete()
+            orders = Order.objects.filter(ordered=True, user=request.user, delivered=False)
+            messages.info(request, "The order has been cancelled!")
+            if orders.count() > 0:
+                return redirect("ecommerce:my_current_orders")
+            else:
+                return redirect("home")
+        except ObjectDoesNotExist:
+            orders = Order.objects.filter(ordered=True, user=request.user, delivered=False)
+            messages.info(request, "No such undelivered order has been made by you!")
+            if orders.count() > 0:
+                return redirect("ecommerce:my_current_orders")
+            else:
+                return redirect("home")
