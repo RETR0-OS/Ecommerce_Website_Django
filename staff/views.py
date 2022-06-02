@@ -13,7 +13,9 @@ from django.contrib.auth.decorators import login_required
 
 #@staff_member_required
 def staff_home(request):
-    if not request.user.is_staff:
+    if not request.user.is_authenticated:
+        return redirect("staff:staff_login")
+    elif not request.user.is_staff:
         return redirect("/")
     else:
         if request.user.groups.filter(name='Delivery_staff_admin').exists() or request.user.is_superuser:
