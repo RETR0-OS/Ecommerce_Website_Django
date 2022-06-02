@@ -69,3 +69,4 @@ To set up this feature, follow the following steps:
     - On Linux: `redis-server`
     - On windows: `redis-server.exe` (assuming that redis is added to path).
     - Note: make sure that redis is running on the default port: port 6379.
+ - This feature is using django-defender package. If you wish to understand or tinker with the defender settings, you may the documentation of this package at https://django-defender.readthedocs.io/en/latest/ .
