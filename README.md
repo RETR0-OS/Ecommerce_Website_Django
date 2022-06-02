@@ -30,12 +30,10 @@ This is the github repository for a site made by R3tr0. This repository has cont
 - Clone repository with: `git clone https://github.com/RETR0-OS/Banana.git`
 
 - `cd Banana`
-
 - Install requirements for project by running: `pip install -r requirements.txt`
-
-- `python3 manage.py runserver`
 - `python3 manage.py makemigrations`
 - `python3 manage.py migrate`
+- `python3 manage.py runserver`
 - Then browse to the url: `localhost:8000`
 - The site would be visible.
 
@@ -67,4 +65,7 @@ To set up this feature, follow the following steps:
  - Open a git bash terminal and run `python3 manage.py makemigrations defender`
  - Next run `python3 manage.py migrate defender`
  - Continue with step 8 as stated above and the rest of the steps.
-
+ - Before the 11th step, open a new git bash terminal and run the Redis server by:
+    - On Linux: `redis-server`
+    - On windows: `redis-server.exe` (assuming that redis is added to path).
+    Note: make sure that redis is running on the default port: port 6379.
