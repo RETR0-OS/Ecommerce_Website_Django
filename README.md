@@ -68,4 +68,4 @@ To set up this feature, follow the following steps:
  - Before the 11th step, open a new git bash terminal and run the Redis server by:
     - On Linux: `redis-server`
     - On windows: `redis-server.exe` (assuming that redis is added to path).
-    Note: make sure that redis is running on the default port: port 6379.
+    - Note: make sure that redis is running on the default port: port 6379.
