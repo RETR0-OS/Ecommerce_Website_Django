@@ -39,3 +39,32 @@ This is the github repository for a site made by R3tr0. This repository has cont
 - Then browse to the url: `localhost:8000`
 - The site would be visible.
 
+#### Optional Steps:
+If you wish to set up brute force protection on the login pages of the site, you will require Redis Server to be installled on your system.
+To set up this feature, follow the following steps:
+- Before 8 th step in the above instructions, go to the minionfactory directory by doing `cd minionfactory`.
+- Open up the settings.py file and un comment the follwing lines:
+  - ```
+    INSTALLED_APPS = [
+    #    'defender',
+  ```
+  - ``` 
+    #'defender.middleware.FailedLoginMiddleware', 
+    ```
+  - ``` 
+    #DEFENDER_LOGIN_FAILURE_LIMIT_IP = 10
+    #DEFENDER_DISABLE_USERNAME_LOCKOUT = True
+    #DEFENDER_LOCKOUT_TEMPLATE = "security/defender_lockout.html"
+    #DEFENDER_ACCESS_ATTEMPT_EXPIRATION = 12
+    ```
+- Next, go to the urls.py file in the same directory and uncomment the following lines:
+  - ```
+    #import defender
+    ```
+  - ```
+    #    path('admin/defender', include('defender.urls')),
+    ```
+ - Open a git bash terminal and run `python3 manage.py makemigrations defender`
+ - Next run `python3 manage.py migrate defender`
+ - Continue with step 8 as stated above and the rest of the steps.
+
