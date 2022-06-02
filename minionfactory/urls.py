@@ -30,4 +30,4 @@ urlpatterns = [
     path('staff/', include('staff.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-#handler404 = "minionfactory.views.handle_404"
+handler404 = "minionfactory.views.handle_404"
