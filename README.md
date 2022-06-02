@@ -41,7 +41,7 @@ This is the github repository for a site made by R3tr0. This repository has cont
 If you wish to set up brute force protection on the login pages of the site, you will require Redis Server to be installled on your system.
 To set up this feature, follow the following steps:
 - Before 8 th step in the above instructions, go to the minionfactory directory by doing `cd minionfactory`.
-- Open up the settings.py file and un comment the follwing lines:
+- Open up the settings.py file and uncomment the follwing lines:
   - ```
     INSTALLED_APPS = [
     #    'defender',
