@@ -14,7 +14,7 @@
             <div class="card-body">
               <h5 class="card-title">Order Reference ID: {{order.ref_code}}</h5>
               <p class="card-text">Date Of Order: {{order.ordered_date}}</p>
-              <p class="card-text">Amount Paid: {{order.Paid_price}}</p>
+              <p class="card-text">Amount Paid: ${{order.Paid_price}}</p>
               <a href='{% url "ecommerce:my_current_order_details" order.pk %}' class="btn btn-primary"><span>View Order Details</span></a>
             </div>
           </div>
