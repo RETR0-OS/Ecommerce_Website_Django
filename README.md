@@ -1,7 +1,7 @@
 # Ecommerce Website
 NOTE: this project has also been hosted on https://r3tr0m1ll3r.pythonanywhere.com/ where all styling with custom error pages and production level settings is visible.
 
-This is the github repository for a site made by R3tr0. This repository has contains a project showing an ecommerce site made by R3tr0 for a company "Banana" that is run by an enterprising minion. This project is based off of Django web framework and Thus requires the users to run it in a python environment.
+This is the github repository for a site made by R3tr0. This repository has contains a project showing an ecommerce site made by R3tr0 for a company "Banana" that is run by an enterprising minion. This project is based off of Django web framework and thus requires the users to run it in a python environment.
 
 # Important notes:
 
